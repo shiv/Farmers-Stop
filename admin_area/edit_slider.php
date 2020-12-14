@@ -1,160 +1,164 @@
 <?php
 
-if(!isset($_SESSION['admin_email'])){
+if (!isset($_SESSION['admin_email'])) {
 
-echo "<script>window.open('login.php','_self')</script>";
-
-}
-
-else {
+  echo "<script>window.open('login.php','_self')</script>";
+} else {
 
 ?>
 
 
-<?php 
+  <?php
 
-if(isset($_GET['edit_slide'])){
+  if (isset($_GET['edit_slide'])) {
 
-$edit_id = $_GET['edit_slide'];
+    $edit_id = $_GET['edit_slide'];
 
-$edit_slide = "select * from slider where slider_id='$edit_id'";
+    $edit_slide = "select * from slider where slider_id='$edit_id'";
 
-$run_edit = mysqli_query($con,$edit_slide);
+    $run_edit = mysqli_query($con, $edit_slide);
 
-$row_edit = mysqli_fetch_array($run_edit);
+    $row_edit = mysqli_fetch_array($run_edit);
 
-$slide_id = $row_edit['slider_id'];
+    $slide_id = $row_edit['slider_id'];
 
-$slide_name = $row_edit['slider_name'];
+    $slide_name = $row_edit['slider_name'];
 
-$slide_image = $row_edit['slider_image'];
+    $slide_image = $row_edit['slider_image'];
+  }
 
 
+  ?>
 
-}
+  <div class="row">
+    <!-- 1 row Starts -->
 
+    <div class="col-lg-12">
+      <!-- col-lg-12 Starts -->
 
-?>
+      <ol class="breadcrumb">
+        <!-- breadcrumb Starts -->
 
-<div class="row" ><!-- 1 row Starts -->
+        <li class="active">
 
-<div class="col-lg-12" ><!-- col-lg-12 Starts --> 
+          <i class="fa fa-dashboard"></i> Dashboard / Edit Slider
 
-<ol class="breadcrumb"><!-- breadcrumb Starts -->
+        </li>
 
-<li class="active">
+      </ol><!-- breadcrumb Ends -->
 
-<i class="fa fa-dashboard" ></i> Dashboard / Edit Slider
 
-</li>
 
-</ol><!-- breadcrumb Ends -->
+    </div><!-- col-lg-12 Ends -->
 
+  </div><!-- 1 row Ends -->
 
+  <div class="row">
+    <!-- 2 row Starts -->
 
-</div><!-- col-lg-12 Ends --> 
+    <div class="col-lg-12">
+      <!-- col-lg-12 Starts -->
 
-</div><!-- 1 row Ends -->
+      <div class="panel panel-default">
+        <!-- panel panel-default Starts -->
 
-<div class="row" ><!-- 2 row Starts -->
+        <div class="panel-heading">
+          <!-- panel-heading Starts -->
 
-<div class="col-lg-12" ><!-- col-lg-12 Starts -->
+          <h3 class="panel-title">
 
-<div class="panel panel-default" ><!-- panel panel-default Starts -->
+            <i class="fa fa-money fa-fw"></i> Edit Slider
 
-<div class="panel-heading" ><!-- panel-heading Starts -->
+          </h3>
 
-<h3 class="panel-title" >
+        </div><!-- panel-heading Ends -->
 
-<i class="fa fa-money fa-fw"></i> Edit Slider
+        <div class="panel-body">
+          <!-- panel-body Starts -->
 
-</h3>
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            <!-- form-horizontal Starts -->
 
-</div><!-- panel-heading Ends -->
+            <div class="form-group">
+              <!-- form-group Starts -->
 
-<div class="panel-body" ><!-- panel-body Starts -->
+              <label class="col-md-3 control-label">Slide Name:</label>
 
-<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" ><!-- form-horizontal Starts -->
+              <div class="col-md-6">
 
-<div class="form-group" ><!-- form-group Starts -->
+                <input type="text" name="slide_name" class="form-control" value="<?php echo $slide_name; ?>">
 
-<label class="col-md-3 control-label">Slide Name:</label>
+              </div>
 
-<div class="col-md-6">
+            </div><!-- form-group Ends -->
 
-<input type="text" name="slide_name" class="form-control" value="<?php echo $slide_name; ?>">
+            <div class="form-group">
+              <!-- form-group Starts -->
 
-</div>
+              <label class="col-md-3 control-label">Slide Image:</label>
 
-</div><!-- form-group Ends -->
+              <div class="col-md-6">
 
-<div class="form-group" ><!-- form-group Starts -->
+                <input type="file" name="slide_image" class="form-control">
+                <br>
+                <img src="slider_images/<?php echo $slide_image; ?>" width="70" height="70">
 
-<label class="col-md-3 control-label">Slide Image:</label>
+              </div>
 
-<div class="col-md-6">
+            </div><!-- form-group Ends -->
 
-<input type="file" name="slide_image" class="form-control" >
-<br>
- <img src="slider_images/<?php echo $slide_image; ?>" width="70" height="70" >
+            <div class="form-group">
+              <!-- form-group Starts -->
 
-</div>
+              <label class="col-md-3 control-label"></label>
 
-</div><!-- form-group Ends -->
+              <div class="col-md-6">
 
-<div class="form-group" ><!-- form-group Starts -->
+                <input type="submit" name="update" value="Update Now" class=" btn btn-primary form-control">
 
-<label class="col-md-3 control-label"></label>
+              </div>
 
-<div class="col-md-6">
+            </div><!-- form-group Ends -->
 
-<input type="submit" name="update" value="Update Now" class=" btn btn-primary form-control" >
 
-</div>
+          </form><!-- form-horizontal Ends -->
 
-</div><!-- form-group Ends -->
+        </div><!-- panel-body Ends -->
 
 
-</form><!-- form-horizontal Ends -->
+      </div><!-- panel panel-default Ends -->
 
-</div><!-- panel-body Ends -->
+    </div><!-- col-lg-12 Ends -->
 
 
-</div><!-- panel panel-default Ends -->
+  </div><!-- 2 row Ends -->
 
-</div><!-- col-lg-12 Ends -->
+  <?php
 
+  if (isset($_POST['update'])) {
 
-</div><!-- 2 row Ends -->
+    $slide_name = $_POST['slide_name'];
 
-<?php
+    $slide_image = $_FILES['slide_image']['name'];
 
-if(isset($_POST['update'])){
+    $temp_name = $_FILES['slide_image']['tmp_name'];
 
-$slide_name = $_POST['slide_name'];
+    move_uploaded_file($temp_name, "slider_images/$slide_image");
 
-$slide_image = $_FILES['slide_image']['name'];
+    $update_slide = "update slider set slider_name='$slide_name',slider_image='$slide_image' where slider_id='$slide_id'";
 
-$temp_name = $_FILES['slide_image']['tmp_name'];
+    $run_slide = mysqli_query($con, $update_slide);
 
-move_uploaded_file($temp_name,"slider_images/$slide_image");
+    if ($run_slide) {
 
-$update_slide = "update slider set slider_name='$slide_name',slider_image='$slide_image' where slider_id='$slide_id'";
+      echo "<script>alert('One Slide Has Been Updated')</script>";
 
-$run_slide = mysqli_query($con,$update_slide);
+      echo "<script>window.open('index.php?view_slider','_self')</script>";
+    }
+  }
 
-if($run_slide){
 
-echo "<script>alert('One Slide Has Been Updated')</script>";
-
-echo "<script>window.open('index.php?view_slider','_self')</script>";
-
-}
-
-}
-
-
-?>
+  ?>
 
 
 

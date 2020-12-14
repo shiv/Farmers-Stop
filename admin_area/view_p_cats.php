@@ -1,140 +1,150 @@
 <?php
 
-if(!isset($_SESSION['admin_email'])){
+if (!isset($_SESSION['admin_email'])) {
 
-echo "<script>window.open('login.php','_self')</script>";
-
-}
-
-else {
+  echo "<script>window.open('login.php','_self')</script>";
+} else {
 
 ?>
 
 
-<div class="row"><!-- 1 row Starts -->
+  <div class="row">
+    <!-- 1 row Starts -->
 
-<div class="col-lg-12"><!-- col-lg-12 Starts -->
+    <div class="col-lg-12">
+      <!-- col-lg-12 Starts -->
 
-<ol class="breadcrumb"><!-- breadcrumb Starts -->
+      <ol class="breadcrumb">
+        <!-- breadcrumb Starts -->
 
-<li class="active">
+        <li class="active">
 
-<i class="fa fa-dashboard"></i> Dashboard / View Products Categories
+          <i class="fa fa-dashboard"></i> Dashboard / View Products Categories
 
-</li>
+        </li>
 
-</ol><!-- breadcrumb Ends -->
+      </ol><!-- breadcrumb Ends -->
 
-</div><!-- col-lg-12 Ends -->
+    </div><!-- col-lg-12 Ends -->
 
-</div><!-- 1 row Ends -->
-
-
-<div class="row"><!-- 2 row Starts -->
-
-<div class="col-lg-12"><!-- col-lg-12 Starts -->
-
-<div class="panel panel-default"><!-- panel panel-default Starts -->
-
-<div class="panel-heading"><!-- panel-heading Starts -->
-
-<h3 class="panel-title"><!-- panel-title Starts -->
-
-<i class="fa fa-money fa-fw"> </i> View Products Categories
-
-</h3><!-- panel-title Ends -->
-
-</div><!-- panel-heading Ends -->
-
-<div class="panel-body"><!-- panel-body Starts -->
-
-<div class="table-responsive"><!-- table-responsive Starts -->
-
-<table class="table table-bordered table-hover table-striped"><!-- table table-bordered table-hover table-striped Starts -->
-
-<thead><!-- thead Starts -->
-
-<tr>
-
-<th>Product Category Id</th>
-<th>Product Category Title</th>
-<th>Product Category Description</th>
-<th>Delete Product Category</th>
-<th>Edit Product Category</th>
+  </div><!-- 1 row Ends -->
 
 
-</tr>
+  <div class="row">
+    <!-- 2 row Starts -->
 
-</thead><!-- thead Ends -->
+    <div class="col-lg-12">
+      <!-- col-lg-12 Starts -->
 
-<tbody><!-- tbody Starts -->
+      <div class="panel panel-default">
+        <!-- panel panel-default Starts -->
 
-<?php
+        <div class="panel-heading">
+          <!-- panel-heading Starts -->
 
-$i=0;
+          <h3 class="panel-title">
+            <!-- panel-title Starts -->
 
-$get_p_cats = "select * from product_categories";
+            <i class="fa fa-money fa-fw"> </i> View Products Categories
 
-$run_p_cats = mysqli_query($con,$get_p_cats);
+          </h3><!-- panel-title Ends -->
 
-while($row_p_cats = mysqli_fetch_array($run_p_cats)){
+        </div><!-- panel-heading Ends -->
 
-$p_cat_id = $row_p_cats['p_cat_id'];
+        <div class="panel-body">
+          <!-- panel-body Starts -->
 
-$p_cat_title = $row_p_cats['p_cat_title'];
+          <div class="table-responsive">
+            <!-- table-responsive Starts -->
 
-$p_cat_desc = $row_p_cats['p_cat_desc'];
+            <table class="table table-bordered table-hover table-striped">
+              <!-- table table-bordered table-hover table-striped Starts -->
 
-$i++;
+              <thead>
+                <!-- thead Starts -->
 
-?>
+                <tr>
 
-<tr>
-
-<td> <?php echo $i; ?> </td>
-
-<td> <?php echo $p_cat_title; ?> </td>
-
-<td width="300"> <?php echo $p_cat_desc; ?> </td>
-
-<td> 
-
-<a href="index.php?delete_p_cat=<?php echo $p_cat_id; ?>">
-
-<i class="fa fa-trash-o"></i> Delete
-
-</a>
-
-</td>
-
-<td> 
-
-<a href="index.php?edit_p_cat=<?php echo $p_cat_id; ?>">
-
-<i class="fa fa-pencil"></i> Edit
-
-</a>
-
-</td>
+                  <th>Product Category Id</th>
+                  <th>Product Category Title</th>
+                  <th>Product Category Description</th>
+                  <th>Delete Product Category</th>
+                  <th>Edit Product Category</th>
 
 
-</tr>
+                </tr>
 
-<?php } ?>
+              </thead><!-- thead Ends -->
 
-</tbody><!-- tbody Ends -->
+              <tbody>
+                <!-- tbody Starts -->
 
-</table><!-- table table-bordered table-hover table-striped Ends -->
+                <?php
 
-</div><!-- table-responsive Ends -->
+                $i = 0;
 
-</div><!-- panel-body Ends -->
+                $get_p_cats = "select * from product_categories";
 
-</div><!-- panel panel-default Ends -->
+                $run_p_cats = mysqli_query($con, $get_p_cats);
 
-</div><!-- col-lg-12 Ends -->
+                while ($row_p_cats = mysqli_fetch_array($run_p_cats)) {
 
-</div><!-- 2 row Ends -->
+                  $p_cat_id = $row_p_cats['p_cat_id'];
+
+                  $p_cat_title = $row_p_cats['p_cat_title'];
+
+                  $p_cat_desc = $row_p_cats['p_cat_desc'];
+
+                  $i++;
+
+                ?>
+
+                  <tr>
+
+                    <td> <?php echo $i; ?> </td>
+
+                    <td> <?php echo $p_cat_title; ?> </td>
+
+                    <td width="300"> <?php echo $p_cat_desc; ?> </td>
+
+                    <td>
+
+                      <a href="index.php?delete_p_cat=<?php echo $p_cat_id; ?>">
+
+                        <i class="fa fa-trash-o"></i> Delete
+
+                      </a>
+
+                    </td>
+
+                    <td>
+
+                      <a href="index.php?edit_p_cat=<?php echo $p_cat_id; ?>">
+
+                        <i class="fa fa-pencil"></i> Edit
+
+                      </a>
+
+                    </td>
+
+
+                  </tr>
+
+                <?php } ?>
+
+              </tbody><!-- tbody Ends -->
+
+            </table><!-- table table-bordered table-hover table-striped Ends -->
+
+          </div><!-- table-responsive Ends -->
+
+        </div><!-- panel-body Ends -->
+
+      </div><!-- panel panel-default Ends -->
+
+    </div><!-- col-lg-12 Ends -->
+
+  </div><!-- 2 row Ends -->
 
 
 

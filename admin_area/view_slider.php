@@ -1,137 +1,149 @@
 <?php
 
 
-if(!isset($_SESSION['admin_email'])){
+if (!isset($_SESSION['admin_email'])) {
 
-echo "<script>window.open('login.php','_self')</script>";
-
-}
-
-else {
+  echo "<script>window.open('login.php','_self')</script>";
+} else {
 
 
 ?>
 
-<div class="row"><!-- 1 row Starts -->
+  <div class="row">
+    <!-- 1 row Starts -->
 
-<div class="col-lg-12"><!-- col-lg-12 Starts -->
+    <div class="col-lg-12">
+      <!-- col-lg-12 Starts -->
 
-<ol class="breadcrumb"><!-- breadcrumb Starts -->
+      <ol class="breadcrumb">
+        <!-- breadcrumb Starts -->
 
-<li class="active">
+        <li class="active">
 
-<i class="fa fa-dashboard"></i> Dashboard / View Slides
+          <i class="fa fa-dashboard"></i> Dashboard / View Slides
 
-</li>
+        </li>
 
-</ol><!-- breadcrumb Ends -->
+      </ol><!-- breadcrumb Ends -->
 
-</div><!-- col-lg-12 Ends -->
+    </div><!-- col-lg-12 Ends -->
 
-</div><!-- 1 row Ends -->
+  </div><!-- 1 row Ends -->
 
 
-<div class="row"><!-- 2 row Starts  -->
+  <div class="row">
+    <!-- 2 row Starts  -->
 
-<div class="col-lg-12"><!-- col-lg-12 Starts -->
+    <div class="col-lg-12">
+      <!-- col-lg-12 Starts -->
 
-<div class="panel panel-default"><!-- panel panel-default Starts -->
+      <div class="panel panel-default">
+        <!-- panel panel-default Starts -->
 
-<div class="panel-heading"><!-- panel-heading Starts -->
+        <div class="panel-heading">
+          <!-- panel-heading Starts -->
 
-<h3 class="panel-title"><!-- panel-title Starts -->
+          <h3 class="panel-title">
+            <!-- panel-title Starts -->
 
-<i class="fa fa-money fa-fw"></i> View Slides
+            <i class="fa fa-money fa-fw"></i> View Slides
 
-</h3><!-- panel-title Ends -->
+          </h3><!-- panel-title Ends -->
 
-</div><!-- panel-heading Ends -->
+        </div><!-- panel-heading Ends -->
 
-<div class="panel-body" ><!-- panel-body Starts -->
+        <div class="panel-body">
+          <!-- panel-body Starts -->
 
-<?php
+          <?php
 
-$get_slides = "select * from slider";
+          $get_slides = "select * from slider";
 
-$run_slides = mysqli_query($con,$get_slides);
+          $run_slides = mysqli_query($con, $get_slides);
 
-while($row_slides=mysqli_fetch_array($run_slides)){
+          while ($row_slides = mysqli_fetch_array($run_slides)) {
 
-$slide_id = $row_slides['slider_id'];
+            $slide_id = $row_slides['slider_id'];
 
-$slide_name = $row_slides['slider_name'];
+            $slide_name = $row_slides['slider_name'];
 
-$slide_image = $row_slides['slider_image'];
+            $slide_image = $row_slides['slider_image'];
 
 
 
-?>
+          ?>
 
-<div class="col-lg-3 col-md-3" ><!-- col-lg-3 col-md-3 Starts -->
+            <div class="col-lg-3 col-md-3">
+              <!-- col-lg-3 col-md-3 Starts -->
 
-<div class="panel panel-primary" ><!-- panel panel-primary Starts --->
+              <div class="panel panel-primary">
+                <!-- panel panel-primary Starts --->
 
-<div class="panel-heading" ><!-- panel-heading Starts -->
+                <div class="panel-heading">
+                  <!-- panel-heading Starts -->
 
-<h3 class="panel-title" align="center" >
+                  <h3 class="panel-title" align="center">
 
-<?php echo $slide_name; ?>
+                    <?php echo $slide_name; ?>
 
 
-</h3>
+                  </h3>
 
-</div><!-- panel-heading Ends -->
+                </div><!-- panel-heading Ends -->
 
-<div class="panel-body" ><!-- panel-body Starts -->
+                <div class="panel-body">
+                  <!-- panel-body Starts -->
 
-<img src="slider_images/<?php echo $slide_image; ?>" class="img-responsive" >
+                  <img src="slider_images/<?php echo $slide_image; ?>" class="img-responsive">
 
-</div><!-- panel-body Ends -->
+                </div><!-- panel-body Ends -->
 
-<div class="panel-footer" ><!-- panel-footer Starts -->
+                <div class="panel-footer">
+                  <!-- panel-footer Starts -->
 
-<center><!-- center Starts -->
+                  <center>
+                    <!-- center Starts -->
 
-<a href="index.php?delete_slide=<?php echo $slide_id; ?>" class="pull-left" >
+                    <a href="index.php?delete_slide=<?php echo $slide_id; ?>" class="pull-left">
 
-<i class="fa fa-trash-o" ></i> Delete
+                      <i class="fa fa-trash-o"></i> Delete
 
-</a>
+                    </a>
 
-<a href="index.php?edit_slide=<?php echo $slide_id; ?>" class="pull-right" >
+                    <a href="index.php?edit_slide=<?php echo $slide_id; ?>" class="pull-right">
 
-<i class="fa fa-pencil" ></i> Edit
+                      <i class="fa fa-pencil"></i> Edit
 
-</a>
+                    </a>
 
-<div class="clearfix" >
+                    <div class="clearfix">
 
-</div>
+                    </div>
 
 
 
-</center><!-- center Ends -->
+                  </center><!-- center Ends -->
 
 
-</div><!-- panel-footer Ends -->
+                </div><!-- panel-footer Ends -->
 
 
-</div><!-- panel panel-primary Ends --->
+              </div><!-- panel panel-primary Ends --->
 
 
-</div><!-- col-lg-3 col-md-3 Ends -->
+            </div><!-- col-lg-3 col-md-3 Ends -->
 
 
-<?php } ?>
+          <?php } ?>
 
 
-</div><!-- panel-body Ends -->
+        </div><!-- panel-body Ends -->
 
 
-</div><!-- panel panel-default Ends -->
+      </div><!-- panel panel-default Ends -->
 
-</div><!-- col-lg-12 Ends -->
+    </div><!-- col-lg-12 Ends -->
 
-</div><!-- 2 row Ends  -->
+  </div><!-- 2 row Ends  -->
 
 <?php } ?>
